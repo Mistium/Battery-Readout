@@ -9,7 +9,12 @@
         document.querySelector('#level').textContent = battery.level;
         document.querySelector('#dischargingTime').textContent = battery.dischargingTime / 60;
       }
-
+      navigator.getBattery().then(function(battery) {
+  console.log(battery.level);
+  battery.addEventListener('levelchange', function() {
+    console.log(this.level);
+      });
+    });
       navigator.getBattery().then(function(battery) {
         // Update the battery status initially when the promise resolves ...
         updateBatteryStatus(battery);
